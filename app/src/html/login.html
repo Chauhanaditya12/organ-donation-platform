@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Login - Organ Donation Platform</title>
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark-mode');
+            document.addEventListener('DOMContentLoaded', () => {
+                document.body.classList.add('dark-mode');
+            });
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="css/fontawesome-all.css" rel="stylesheet">
+    <link href="css/auth.css" rel="stylesheet">
+    <link rel="icon" href="images/app-logo.png">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <!-- Left Side: Cinematic Branding -->
+            <div class="auth-side-image">
+                <div class="side-content">
+                    <h1 id="rotatingHeader" data-i18n="connecting_lives">Connecting Lives</h1>
+                    <p id="rotatingSubtitle" data-i18n="auth_subtitle">Experience the future of organ donation with blockchain transparency and security.</p>
+                </div>
+            </div>
+
+            <!-- Right Side: Interactive Forms -->
+            <div class="auth-form-area">
+                <div class="lang-selector-container">
+                    <select id="languageSelector" class="lang-switch">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी (Hindi)</option>
+                    </select>
+                </div>
+                <div class="form-depth-layer"></div>
+                <div class="auth-header text-center">
+                    <img src="images/app-logo.png" alt="Logo">
+                </div>
+                
+                <!-- Login Form -->
+                <div id="loginForm">
+                    <h3 data-i18n="login_title">Sign In</h3>
+                    <div class="input-group-modern">
+                        <input type="text" id="loginUsername" class="form-control" data-i18n="username_placeholder" placeholder="Username">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="input-group-modern">
+                        <input type="password" id="loginPassword" class="form-control" data-i18n="password_placeholder" placeholder="Password">
+                        <i class="fas fa-lock"></i>
+                        <i class="fas fa-eye password-toggle" onclick="Auth.togglePassword('loginPassword', this)"></i>
+                    </div>
+                    <button class="btn btn-auth" onclick="Auth.login()" data-i18n="continue_btn">Continue</button>
+                    <p class="text-center">
+                        <span data-i18n="new_here">New here? </span>
+                        <a href="#" onclick="Auth.toggleForm()" data-i18n="create_account">Create Account</a>
+                    </p>
+                </div>
+
+                <!-- Signup Form -->
+                <div id="signupForm" style="display: none;">
+                    <h3 data-i18n="signup_title">Register</h3>
+                    <div class="input-group-modern">
+                        <input type="text" id="signupName" class="form-control" data-i18n="full_name_placeholder" placeholder="Full Name">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <div class="input-group-modern">
+                        <input type="text" id="signupUsername" class="form-control" data-i18n="username_placeholder" placeholder="Username">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div class="input-group-modern">
+                        <input type="password" id="signupPassword" class="form-control" placeholder="Password" data-i18n="password_placeholder">
+                        <i class="fas fa-shield-alt"></i>
+                        <i class="fas fa-eye password-toggle" onclick="Auth.togglePassword('signupPassword', this)"></i>
+                    </div>
+                    <button class="btn btn-auth" onclick="Auth.signup()" data-i18n="join_platform_btn">Join Platform</button>
+                    <p class="text-center">
+                        <span data-i18n="have_account">Have an account? </span>
+                        <a href="#" onclick="Auth.toggleForm()" data-i18n="login_instead">Login instead</a>
+                    </p>
+                </div>
+                
+                <div id="authMessage" class="alert mt-4" style="display: none;"></div>
+
+                <!-- Blockchain Live Feed -->
+                <div class="blockchain-feed">
+                    <div class="ledger-header">
+                        <div class="pulse-dot"></div>
+                        <span data-i18n="secure_donation_feed">Secure Donation Feed</span>
+                    </div>
+                    <div class="ledger-content">
+                        <div id="ledger-text" data-i18n="sync_network">Synchronizing with Network...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/translations.js"></script>
+    <script>
+        // Rotating Content Logic
+        const headerKeys = ['connecting_lives', 'auth_header_2', 'auth_header_3', 'auth_header_4', 'auth_header_5'];
+        const subtitleKeys = ['auth_subtitle', 'auth_subtitle_2', 'auth_subtitle_3', 'auth_subtitle_4', 'auth_subtitle_5'];
+        let currentIndex = 0;
+
+        function rotateContent() {
+            const headerEl = document.getElementById('rotatingHeader');
+            const subtitleEl = document.getElementById('rotatingSubtitle');
+            const lang = localStorage.getItem('preferredLanguage') || 'en';
+            
+            // Start fade out
+            headerEl.style.opacity = 0;
+            headerEl.style.transform = 'translateY(-10px)';
+            subtitleEl.style.opacity = 0;
+            subtitleEl.style.transform = 'translateY(10px)';
+            
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % headerKeys.length;
+                
+                // Update Header
+                const hKey = headerKeys[currentIndex];
+                headerEl.setAttribute('data-i18n', hKey);
+                if (translations[lang] && translations[lang][hKey]) {
+                    headerEl.innerText = translations[lang][hKey];
+                }
+                
+                // Update Subtitle
+                const sKey = subtitleKeys[currentIndex];
+                subtitleEl.setAttribute('data-i18n', sKey);
+                if (translations[lang] && translations[lang][sKey]) {
+                    subtitleEl.innerText = translations[lang][sKey];
+                }
+                
+                // Fade in
+                headerEl.style.opacity = 1;
+                headerEl.style.transform = 'translateY(0)';
+                subtitleEl.style.opacity = 1;
+                subtitleEl.style.transform = 'translateY(0)';
+            }, 600);
+        }
+        setInterval(rotateContent, 3500); // Updated to 3.5 seconds
+
+        // Blockchain Feed Logic
+        const activityData = {
+            'en': [
+                "Block #14,802 Verified",
+                "New Pledge: 0x4f2...a1b",
+                "Success Probability: 98% Secured",
+                "Donor Node Active: 0x9c3...e7f",
+                "Transplant Match Confirmed",
+                "Blockchain Sync: Latency 24ms"
+            ],
+            'hi': [
+                "ब्लॉक #14,802 सत्यापित",
+                "नई प्रतिज्ञा: 0x4f2...a1b",
+                "सफलता की संभावना: 98% सुरक्षित",
+                "दाता नोड सक्रिय: 0x9c3...e7f",
+                "प्रत्यारोपण मिलान की पुष्टि",
+                "ब्लॉकचेन सिंक: विलंबता 24ms"
+            ]
+        };
+
+        let i = 0;
+        setInterval(() => {
+            const lang = localStorage.getItem('preferredLanguage') || 'en';
+            const activity = activityData[lang] || activityData['en'];
+            const el = document.getElementById('ledger-text');
+            if (el) {
+                el.style.opacity = 0;
+                setTimeout(() => {
+                    el.innerText = activity[i];
+                    el.style.opacity = 1;
+                    i = (i + 1) % activity.length;
+                }, 500);
+            }
+        }, 4000);
+    </script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

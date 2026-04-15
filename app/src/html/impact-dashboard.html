@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+    if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('dark-mode');
+        });
+    }
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Dashboard - Organ Donation Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="icon" href="../images/app-logo.png">
+    <link href="../css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .lang-switch {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--primary-teal);
+            border-radius: 8px;
+            padding: 5px 10px;
+            color: var(--primary-teal);
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 25px;
+            padding: 20px 0;
+        }
+
+        .impact-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-soft);
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .impact-card h2 {
+            color: var(--primary-teal) !important;
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+
+        .availability-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 8px;
+        }
+
+        .availability-table th {
+            background: var(--primary-teal) !important;
+            color: white !important;
+            padding: 12px !important;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .availability-table td {
+            background: white;
+            padding: 12px !important;
+            color: var(--text-color) !important;
+            border: none !important;
+        }
+
+        .availability-table tr td:first-child { border-radius: 8px 0 0 8px; }
+        .availability-table tr td:last-child { border-radius: 0 8px 8px 0; }
+
+        .status-high { color: #e74c3c !important; font-weight: 700; }
+        .status-medium { color: #f39c12 !important; font-weight: 700; }
+        .status-low { color: #3498db !important; font-weight: 700; }
+
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-card">
+        <header>
+            <div class="d-flex align-items-center">
+                <select id="languageSelector" class="lang-switch">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी (Hindi)</option>
+                </select>
+                <a href="../index.html" class="btn-homepage" style="font-size: 14px; padding: 8px 15px;" style="font-size: 14px; padding: 8px 15px;" data-i18n="back_to_dashboard">Back to Dashboard</a>
+            </div>
+        </header>
+
+        <main>
+            <div class="container">
+                <h3 class="mb-4 text-center" style="color: var(--primary-teal); font-weight: 700;" data-i18n="platform_impact_title">Platform Impact & Organ Statistics</h3>
+                
+                <div class="dashboard-grid">
+                    <!-- Card for Bar Chart: Donors per Organ -->
+                    <div class="impact-card">
+                        <h2 data-i18n="donors_per_organ">Donors per Organ</h2>
+                        <canvas id="donorsBarChart"></canvas>
+                    </div>
+
+                    <!-- Card for Pie Chart: Requests per Organ -->
+                    <div class="impact-card">
+                        <h2 data-i18n="requests_per_organ">Requests per Organ</h2>
+                        <canvas id="requestsPieChart"></canvas>
+                    </div>
+
+                    <!-- Card for Line Chart: Month-wise Growth of Donations -->
+                    <div class="impact-card">
+                        <h2 data-i18n="donation_growth">Month-wise Donation Growth</h2>
+                        <canvas id="growthLineChart"></canvas>
+                    </div>
+
+                    <!-- Card for Organ Availability -->
+                    <div class="impact-card">
+                        <h2 data-i18n="organ_availability">Organ Availability</h2>
+                        <table class="availability-table">
+                            <thead>
+                                <tr>
+                                    <th data-i18n="organ_head">Organ</th>
+                                    <th data-i18n="status_head">Availability Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td data-i18n="kidney">Kidney</td>
+                                    <td class="status-high"><span data-i18n="high_demand">🔴 High Demand</span></td>
+                                </tr>
+                                <tr>
+                                    <td data-i18n="liver">Liver</td>
+                                    <td class="status-medium"><span data-i18n="medium_demand">🟡 Medium Demand</span></td>
+                                </tr>
+                                <tr>
+                                    <td data-i18n="heart">Heart</td>
+                                    <td class="status-low"><span data-i18n="low_demand">🔵 Low Demand</span></td>
+                                </tr>
+                                <tr>
+                                    <td data-i18n="lungs">Lungs</td>
+                                    <td class="status-medium"><span data-i18n="medium_demand">🟡 Medium Demand</span></td>
+                                </tr>
+                                <tr>
+                                    <td data-i18n="pancreas">Pancreas</td>
+                                    <td class="status-low"><span data-i18n="low_demand">🔵 Low Demand</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/translations.js"></script>
+    <script>
+        // Chart configurations
+        const lang = localStorage.getItem('preferredLanguage') || 'en';
+        const labels = lang === 'hi' ? ['किडनी', 'लिवर', 'दिल', 'फेफड़े'] : ['Kidney', 'Liver', 'Heart', 'Lungs'];
+        const donorLabel = lang === 'hi' ? 'दाताओं की संख्या' : 'Number of Donors';
+        const totalDonationsLabel = lang === 'hi' ? 'कुल दान' : 'Total Donations';
+        const months = lang === 'hi' ? ['जनवरी', 'फरवरी', 'मार्च', 'अप्रैल', 'मई', 'जून'] : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+
+        var donorsCtx = document.getElementById('donorsBarChart').getContext('2d');
+        var donorsData = {
+            labels: labels,
+            datasets: [{
+                label: donorLabel,
+                data: [150, 80, 40, 60],
+                backgroundColor: 'rgba(59, 141, 136, 0.6)',
+                borderColor: 'rgba(59, 141, 136, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        new Chart(donorsCtx, {
+            type: 'bar',
+            data: donorsData,
+            options: {
+                responsive: true,
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+
+        var requestsCtx = document.getElementById('requestsPieChart').getContext('2d');
+        var requestsData = {
+            labels: labels,
+            datasets: [{
+                data: [300, 180, 90, 120],
+                backgroundColor: [
+                    'rgba(59, 141, 136, 0.8)',
+                    'rgba(77, 182, 172, 0.8)',
+                    'rgba(0, 121, 107, 0.8)',
+                    'rgba(178, 223, 219, 0.8)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        new Chart(requestsCtx, {
+            type: 'pie',
+            data: requestsData,
+            options: { responsive: true }
+        });
+
+        var growthCtx = document.getElementById('growthLineChart').getContext('2d');
+        var growthData = {
+            labels: months,
+            datasets: [{
+                label: totalDonationsLabel,
+                data: [20, 35, 50, 70, 85, 110],
+                fill: true,
+                backgroundColor: 'rgba(59, 141, 136, 0.1)',
+                borderColor: 'rgba(59, 141, 136, 1)',
+                tension: 0.4
+            }]
+        };
+
+        new Chart(growthCtx, {
+            type: 'line',
+            data: growthData,
+            options: { responsive: true }
+        });
+    </script>
+    <script src="../js/chatbot.js"></script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+    if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('dark-mode');
+        });
+    }
+</script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Organ Donation Platform</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/fontawesome-all.css">
+    <link rel="icon" href="images/app-logo.png">
+
+    <style>
+        .about-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .about-section h1 {
+            color: var(--primary-teal) !important;
+            font-weight: 800;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .about-section .intro-text {
+            color: var(--text-color) !important;
+            font-weight: 600;
+            font-size: 1.2rem;
+            max-width: 850px;
+            margin: 0 auto 40px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: var(--shadow-soft);
+            text-align: left;
+            transition: transform 0.3s ease;
+            margin-bottom: 30px;
+            height: 100%;
+            border: 1px solid rgba(59, 141, 136, 0.1);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-card h4 {
+            color: var(--primary-teal);
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .info-card h4 i {
+            background: rgba(59, 141, 136, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .info-card p {
+            color: var(--text-color) !important;
+            font-weight: 500;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .tech-highlight {
+            background: var(--primary-gradient);
+            padding: 50px;
+            border-radius: 30px;
+            color: white;
+            box-shadow: var(--btn-shadow);
+            margin-top: 50px;
+        }
+
+        .tech-highlight h3 {
+            color: white !important;
+            font-weight: 800;
+            margin-bottom: 35px;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .tech-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 20px;
+            border-radius: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tech-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.03);
+        }
+
+        .tech-item i {
+            font-size: 1.3rem;
+            color: white;
+        }
+
+        .lang-switch {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--primary-teal);
+            border-radius: 8px;
+            padding: 5px 10px;
+            color: var(--primary-teal);
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+    </style>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="main-card">
+        <header>
+            <nav class="d-none d-md-block">
+                <ul class="d-flex align-items-center gap-2 list-unstyled mb-0">
+                    <li>
+                        <select id="languageSelector" class="lang-switch">
+                            <option value="en">English</option>
+                            <option value="hi">हिंदी (Hindi)</option>
+                        </select>
+                    </li>
+                    <li><a href="homepage.html" style="font-size: 14px; color: var(--text-color) !important; font-weight: 600;" data-i18n="home">Home</a></li>
+                    <li><a href="about-us.html" style="font-size: 14px; color: var(--primary-teal) !important; font-weight: 700;" data-i18n="about_us">About Us</a></li>
+                    <li><a href="contact.html" style="font-size: 14px; color: var(--text-color) !important; font-weight: 600;" data-i18n="contact">Contact</a></li>
+                    <li><a href="awareness.html" style="font-size: 14px; color: var(--text-color) !important; font-weight: 600;" data-i18n="awareness">Awareness</a></li>
+                    <li><a href="donor-pledge.html" style="font-size: 14px; color: var(--text-color) !important; font-weight: 600;" data-i18n="pledge">Pledge</a></li>
+                    <li><a href="index.html" class="btn-homepage" style="font-size: 14px; padding: 8px 15px;" data-i18n="back_to_dashboard">Dashboard</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="container">
+                <section class="about-section">
+                    <h1 data-i18n="about_title">About Organ Donation Platform</h1>
+                    <p class="intro-text" data-i18n="about_intro">
+                        A blockchain-powered decentralized application that brings transparency, trust,
+                        and efficiency to the organ donation ecosystem.
+                    </p>
+                </section>
+
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="info-card">
+                            <h4 data-i18n="about_why_blockchain_title"><i class="fas fa-link"></i> Why Blockchain?</h4>
+                            <p data-i18n="about_why_blockchain_text">
+                                Traditional organ donation systems suffer from lack of transparency,
+                                manual verification, and delays. Blockchain eliminates these issues
+                                by providing immutable records and decentralized trust.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="info-card">
+                            <h4 data-i18n="about_secure_title"><i class="fas fa-shield-alt"></i> Secure & Transparent</h4>
+                            <p data-i18n="about_secure_text">
+                                Smart contracts ensure donor and recipient data remains tamper-proof,
+                                auditable, and securely handled without centralized authority.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="tech-highlight">
+                    <h3 data-i18n="about_tech_stack_title">Technology Stack</h3>
+                    <div class="tech-grid">
+                        <div class="tech-item"><i class="fab fa-ethereum"></i> <span data-i18n="tech_ethereum">Ethereum Blockchain</span></div>
+                        <div class="tech-item"><i class="fas fa-file-code"></i> <span data-i18n="tech_solidity">Solidity Contracts</span></div>
+                        <div class="tech-item"><i class="fab fa-node-js"></i> <span data-i18n="tech_nodejs">Node.js Backend</span></div>
+                        <div class="tech-item"><i class="fas fa-network-wired"></i> <span data-i18n="tech_web3">Web3.js Integration</span></div>
+                        <div class="tech-item"><i class="fas fa-lock"></i> <span data-i18n="tech_security">Decentralized Security</span></div>
+                        <div class="tech-item"><i class="fab fa-bootstrap"></i> <span data-i18n="tech_bootstrap">Bootstrap UI</span></div>
+                        <div class="tech-item"><i class="fas fa-hammer"></i> <span data-i18n="tech_truffle">Truffle Suite</span></div>
+                        <div class="tech-item"><i class="fas fa-wallet"></i> <span data-i18n="tech_metamask">Metamask Wallet</span></div>
+                        <div class="tech-item"><i class="fas fa-brain"></i> <span data-i18n="tech_ml">Machine Learning</span></div>
+                        <div class="tech-item"><i class="fas fa-database"></i> <span data-i18n="tech_ganache">Ganache Testnet</span></div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/translations.js"></script>
+    <script src="main.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>

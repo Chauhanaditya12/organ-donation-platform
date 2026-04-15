@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+    if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('dark-mode');
+        });
+    }
+</script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awareness - Organ Donation Platform</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/fontawesome-all.css">
+    <link rel="icon" href="../images/app-logo.png">
+
+    <style>
+        .lang-switch {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--primary-teal);
+            border-radius: 8px;
+            padding: 5px 10px;
+            color: var(--primary-teal);
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+        .awareness-section {
+            padding: 40px 0;
+        }
+
+        .awareness-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .awareness-header h1 {
+            color: var(--primary-teal) !important;
+            font-weight: 800;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 30px;
+        }
+
+        .content-card h2 {
+            color: var(--primary-teal) !important;
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(59, 141, 136, 0.2);
+            padding-bottom: 10px;
+            text-align: left;
+        }
+
+        .content-card h4 {
+            color: var(--primary-teal);
+            font-weight: 700;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .content-card p {
+            color: var(--text-color) !important;
+            font-weight: 500;
+            line-height: 1.8;
+            margin-bottom: 20px !important;
+            text-align: justify;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .info-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 15px;
+            color: var(--text-color);
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .info-list li::before {
+            content: "\f058";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--primary-teal);
+        }
+
+        .phase-section {
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(59, 141, 136, 0.05);
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-teal);
+        }
+
+        .phase-section h4 {
+            margin-top: 0;
+            color: var(--primary-teal);
+            font-weight: 700;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-logo img {
+            height: 50px;
+            margin-bottom: 20px;
+        }
+
+        #copyright p {
+            color: var(--text-color) !important;
+            font-weight: 500;
+        }
+    </style>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="main-card">
+        <header>
+            <nav class="d-none d-md-block">
+                <ul class="d-flex align-items-center gap-2 list-unstyled mb-0">
+                    <li>
+                        <select id="languageSelector" class="lang-switch">
+                            <option value="en">English</option>
+                            <option value="hi">हिंदी (Hindi)</option>
+                        </select>
+                    </li>
+                    <li><a href="homepage.html" style="font-size: 14px; color: var(--text-color) !important; font-weight: 600;" data-i18n="home">Home</a></li>
+                    <li><a href="about-us.html" style="font-size: 14px; color: var(--text-color) !important; font-weight: 600;" data-i18n="about_us">About Us</a></li>
+                    <li><a href="contact.html" style="font-size: 14px; color: var(--text-color) !important; font-weight: 600;" data-i18n="contact">Contact</a></li>
+                    <li><a href="awareness.html" style="font-size: 14px; color: var(--primary-teal) !important; font-weight: 700;" data-i18n="awareness">Awareness</a></li>
+                    <li><a href="donor-pledge.html" style="font-size: 14px; color: var(--text-color) !important; font-weight: 600;" data-i18n="pledge">Pledge</a></li>
+                    <li><a href="../index.html" class="btn-homepage" style="font-size: 14px; padding: 8px 15px;" style="font-size: 14px; padding: 8px 15px;" data-i18n="back_to_dashboard">Dashboard</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="container awareness-section">
+                <div class="awareness-header">
+                    <h1 data-i18n="awareness_title">Awareness & Education</h1>
+                </div>
+
+                <div class="content-card">
+                    <h2 data-i18n="literature_survey">Literature Survey</h2>
+                    <p data-i18n="literature_p1">The most crucial part of organ donation after it’s available is to instantly find a donor and securely transfer it. The introduction of the machine to machine communication where all of these devices communicate without any human interference ensuring fast actions. Already implemented situations use blockchains for tracking all of these transactions without compromising the secrecy of the data of the owner and also to prevent the risk of fraud.</p>
+                    <p data-i18n="literature_p2">Blockchain technology will eliminate inefficiency and will also cause a reduction of costs by conducting transactions among parties without central authority through smart contracts. Everything could be tied to a blockchain ledger containing verifiable time-stamped records of creation and ownership. India has some of the most sophisticated uses of blockchain in some areas, creating a value of up to USD 5 billion dollars in the Indian economy by 2023.</p>
+                </div>
+
+                <div class="content-card">
+                    <h2 data-i18n="legal_framework_title">Organ Donation & Legal Framework</h2>
+                    <p data-i18n="organ_donation_def">Organ donation means giving part of body (organ) to a person with end stage organ disease who needs a transplant. The organs that can be donated include kidney, liver, heart, lungs, and small bowel and tissues such as corneas, heart valves, skin and bone.</p>
+                    <h4 data-i18n="legal_framework_india_title">Legal Framework In India</h4>
+                    <p data-i18n="legal_framework_india_text">Organ donation in India is regulated by the Transplantation of Human Organs and Tissues Act, 1994. The National Organ and Tissue Transplant Organisation (NOTTO) functions as the apex body. India performs the second largest number of transplants in the world but still lags in donation rates (0.65 pmp) due to its huge population and lack of public awareness.</p>
+                </div>
+
+                <div class="content-card">
+                    <h2 data-i18n="donor_types_title">Types of Donors</h2>
+                    <h4 data-i18n="living_donors_title">Living Donors</h4>
+                    <p data-i18n="living_donors_text">Living donors are permitted to donate one kidney, a portion of the pancreas, or part of the liver. They must be over 18 years of age and usually donate to immediate blood relatives.</p>
+                    <ul class="info-list">
+                        <li data-i18n="near_related"><strong>Near Related:</strong> Parents, siblings, children, spouse, etc.</li>
+                        <li data-i18n="non_near_relative"><strong>Non-near relative:</strong> Donors other than near relatives, usually for special affection.</li>
+                        <li data-i18n="swap_donors"><strong>SWAP Donors:</strong> Pairing of donor-recipient sets to match compatibility.</li>
+                    </ul>
+
+                    <h4 data-i18n="deceased_donors_title">Deceased Donors</h4>
+                    <p data-i18n="deceased_donors_text">Deceased donor is anyone who becomes a donor after Death (Brainstem/Cardiac). Deceased donors may donate six life-saving organs: kidneys, liver, heart, lungs, pancreas, and intestine. One brainstem death donor can save up to 37 different organs and tissues.</p>
+                </div>
+
+                <div class="content-card">
+                    <h2 data-i18n="how_it_works_title">How Organ Donation Works</h2>
+                    <p data-i18n="how_it_works_intro">The process of organ donation consists of 6 major phases to ensure the lifesaving gift reaches those in need safely and ethically.</p>
+                    
+                    <div class="phase-section">
+                        <h4 data-i18n="phase1_title">Phase 1: Sign-Up</h4>
+                        <p data-i18n="phase1_text">Organ transplants cannot occur without those who generously sign up to be organ donors through state registries or driver's license renewals.</p>
+                    </div>
+
+                    <div class="phase-section">
+                        <h4 data-i18n="phase2_title">Phase 2: Critical Care</h4>
+                        <p data-i18n="phase2_text">Hospital staff prioritize saving the patient's life. Only after all lifesaving efforts are exhausted and death is confirmed is donation considered.</p>
+                    </div>
+
+                    <div class="phase-section">
+                        <h4 data-i18n="phase3_title">Phase 3: Identification & Consent</h4>
+                        <p data-i18n="phase3_text">Local organ procurement organizations (OPO) confirm potential for donation and seek consent from next of kin if not already registered.</p>
+                    </div>
+
+                    <div class="phase-section">
+                        <h4 data-i18n="phase4_title">Phase 4: Organ Transport</h4>
+                        <p data-i18n="phase4_text">Skilled surgeons recover organs, which are then rushed to the recipient's hospital, often using "Green Corridors" for speed.</p>
+                    </div>
+
+                    <div class="phase-section">
+                        <h4 data-i18n="phase5_title">Phase 5: Organ Transplant</h4>
+                        <p data-i18n="phase5_text">Transplantation surgery begins immediately upon arrival, as the recipient is typically already waiting in the operating room.</p>
+                    </div>
+
+                    <div class="phase-section">
+                        <h4 data-i18n="phase6_title">Phase 6: Recovery</h4>
+                        <p data-i18n="phase6_text">Post-surgery recovery involves monitoring for rejection and infection, with medical teams supporting the recipient's return to health.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script src="../js/translations.js"></script>
+    <script src="../main.js"></script>
+    <script src="../js/chatbot.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+    if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('dark-mode');
+        });
+    }
+</script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage - Organ Donation Platform</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/fontawesome-all.css">
+    <link rel="icon" href="images/app-logo.png">
+
+    <style>
+        .hero-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            color: var(--primary-teal) !important;
+            font-weight: 800;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-section .intro-text {
+            color: var(--text-color) !important;
+            font-weight: 600;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 30px;
+            box-shadow: var(--shadow-soft);
+            text-align: center;
+            transition: transform 0.3s ease;
+            margin-bottom: 30px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            border: 1px solid rgba(59, 141, 136, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: rgba(59, 141, 136, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--primary-teal);
+            font-size: 2.5rem;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(59, 141, 136, 0.2);
+        }
+
+        .feature-card:hover .feature-icon-wrapper {
+            background: var(--primary-teal);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(59, 141, 136, 0.3);
+        }
+
+        .feature-card h4 {
+            color: var(--primary-teal);
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: var(--text-color) !important;
+            font-weight: 500;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .tech-highlight {
+            background: var(--primary-gradient);
+            padding: 50px;
+            border-radius: 30px;
+            color: white;
+            box-shadow: var(--btn-shadow);
+            margin-top: 50px;
+        }
+
+        .tech-highlight h3 {
+            color: white !important;
+            font-weight: 800;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .tech-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 20px;
+            border-radius: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: background 0.3s ease;
+        }
+
+        .tech-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .tech-item i {
+            font-size: 1.2rem;
+        }
+
+        .need-section {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 40px;
+            border-radius: 30px;
+            margin-bottom: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .need-section h2 {
+            color: var(--primary-teal) !important;
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+        .need-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .need-list li {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--text-color);
+        }
+
+        .need-list i {
+            color: var(--primary-teal);
+        }
+
+        .image-container img {
+            border-radius: 20px;
+            box-shadow: var(--shadow-premium);
+        }
+    </style>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="main-card">
+        <header>
+            <nav class="d-none d-md-block">
+                <ul class="d-flex align-items-center gap-2 list-unstyled mb-0">
+                    <li>
+                        <select id="languageSelector" class="lang-switch">
+                            <option value="en">English</option>
+                            <option value="hi">हिंदी (Hindi)</option>
+                        </select>
+                    </li>
+                    <li><a href="homepage.html" style="font-size: 14px; color: var(--primary-teal) !important; font-weight: 700;" data-i18n="home">Home</a></li>
+                    <li><a href="about-us.html" style="font-size: 14px; color: var(--text-color) !important; font-weight: 600;" data-i18n="about_us">About Us</a></li>
+                    <li><a href="contact.html" style="font-size: 14px; color: var(--text-color) !important; font-weight: 600;" data-i18n="contact">Contact</a></li>
+                    <li><a href="awareness.html" style="font-size: 14px; color: var(--text-color) !important; font-weight: 600;" data-i18n="awareness">Awareness</a></li>
+                    <li><a href="donor-pledge.html" style="font-size: 14px; color: var(--text-color) !important; font-weight: 600;" data-i18n="pledge">Pledge</a></li>
+                    <li><a href="index.html" class="btn-homepage" style="font-size: 14px; padding: 8px 15px;" data-i18n="back_to_dashboard">Dashboard</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="container">
+                <section class="hero-section">
+                    <h1 data-i18n="hero_title">Pledge To Become A Donor</h1>
+                    <p class="intro-text" data-i18n="hero_subtitle">
+                        More than 100,000 people are waiting for a lifesaving transplant. You can help make a difference today.
+                    </p>
+                </section>
+
+                <div class="row align-items-center mb-5">
+                    <div class="col-lg-6">
+                        <div class="need-section">
+                            <h2 data-i18n="need_title">The Need</h2>
+                            <ul class="need-list">
+                                <li><i class="fas fa-clock"></i> <span data-i18n="need_1">A person is added to the waiting list every 9 minutes</span></li>
+                                <li><i class="fas fa-user-times"></i> <span data-i18n="need_2">17 people die each day while waiting for an organ transplant</span></li>
+                                <li><i class="fas fa-heart"></i> <span data-i18n="need_3">One organ, eye and tissue donor can save and heal more than 75 lives</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="image-container text-center">
+                            <img src="images/header-image-new.png" alt="Donation awareness" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-lg-4">
+                        <div class="feature-card">
+                            <div class="feature-icon-wrapper">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h4 data-i18n="about_secure_title">Secure & Transparent</h4>
+                            <p data-i18n="about_secure_text">Smart contracts ensure donor and recipient data remains tamper-proof and securely handled.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="feature-card">
+                            <div class="feature-icon-wrapper">
+                                <i class="fas fa-link"></i>
+                            </div>
+                            <h4 data-i18n="about_why_blockchain_title">Why Blockchain?</h4>
+                            <p data-i18n="about_why_blockchain_text">Blockchain eliminates transparency issues by providing immutable records and decentralized trust.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="feature-card">
+                            <div class="feature-icon-wrapper">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <h4 data-i18n="pledge">Pledge</h4>
+                            <p data-i18n="hero_subtitle">Join the thousands who have already pledged to save lives through organ donation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="tech-highlight">
+                    <h3 data-i18n="about_tech_stack_title">Technology Stack</h3>
+                    <div class="tech-grid">
+                        <div class="tech-item"><i class="fab fa-ethereum"></i> <span data-i18n="tech_ethereum">Ethereum Blockchain</span></div>
+                        <div class="tech-item"><i class="fas fa-file-code"></i> <span data-i18n="tech_solidity">Solidity Contracts</span></div>
+                        <div class="tech-item"><i class="fab fa-node-js"></i> <span data-i18n="tech_nodejs">Node.js Backend</span></div>
+                        <div class="tech-item"><i class="fas fa-network-wired"></i> <span data-i18n="tech_web3">Web3.js Integration</span></div>
+                        <div class="tech-item"><i class="fas fa-lock"></i> <span data-i18n="tech_security">Decentralized Security</span></div>
+                        <div class="tech-item"><i class="fab fa-bootstrap"></i> <span data-i18n="tech_bootstrap">Bootstrap UI</span></div>
+                        <div class="tech-item"><i class="fas fa-hammer"></i> <span data-i18n="tech_truffle">Truffle Suite</span></div>
+                        <div class="tech-item"><i class="fas fa-wallet"></i> <span data-i18n="tech_metamask">Metamask Wallet</span></div>
+                        <div class="tech-item"><i class="fas fa-brain"></i> <span data-i18n="tech_ml">Machine Learning</span></div>
+                        <div class="tech-item"><i class="fas fa-database"></i> <span data-i18n="tech_ganache">Ganache Testnet</span></div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/translations.js"></script>
+    <script src="main.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>

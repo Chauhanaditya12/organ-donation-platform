@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+    if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('dark-mode');
+        });
+    }
+</script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Organ Donation Platform</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/fontawesome-all.css">
+    <link rel="icon" href="images/app-logo.png">
+
+    <style>
+        .lang-switch {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--primary-teal);
+            border-radius: 8px;
+            padding: 5px 10px;
+            color: var(--primary-teal);
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+        .contact-section {
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .contact-section h1 {
+            color: var(--primary-teal) !important;
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: var(--shadow-soft);
+            text-align: center;
+            transition: transform 0.3s ease;
+            margin-bottom: 40px;
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(59, 141, 136, 0.1);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .contact-icon-wrapper {
+            width: 100px;
+            height: 100px;
+            background: rgba(59, 141, 136, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: var(--primary-teal);
+            font-size: 3rem;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(59, 141, 136, 0.2);
+        }
+
+        .contact-card:hover .contact-icon-wrapper {
+            background: var(--primary-teal);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(59, 141, 136, 0.3);
+        }
+
+        .contact-card h3 {
+            color: var(--primary-teal);
+            font-weight: 800;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-card p {
+            color: var(--text-color) !important;
+            font-weight: 600;
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+
+        .info-highlight {
+            background: var(--primary-gradient);
+            padding: 40px;
+            border-radius: 30px;
+            color: white;
+            box-shadow: var(--btn-shadow);
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-highlight h4 {
+            color: white !important;
+            font-weight: 800;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+
+        .info-highlight p {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 0 !important;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .info-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .info-list i {
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-logo img {
+            height: 50px;
+            margin-bottom: 20px;
+        }
+
+        #copyright p {
+            color: var(--text-color) !important;
+            font-weight: 500;
+        }
+    </style>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="main-card">
+        <header>
+            <nav class="d-none d-md-block">
+                <ul class="d-flex align-items-center gap-2 list-unstyled mb-0">
+                    <li>
+                        <select id="languageSelector" class="lang-switch">
+                            <option value="en">English</option>
+                            <option value="hi">हिंदी (Hindi)</option>
+                        </select>
+                    </li>
+                    <li><a href="homepage.html" style="font-size: 14px; color: var(--text-color) !important; font-weight: 600;" data-i18n="home">Home</a></li>
+                    <li><a href="about-us.html" style="font-size: 14px; color: var(--text-color) !important; font-weight: 600;" data-i18n="about_us">About Us</a></li>
+                    <li><a href="contact.html" style="font-size: 14px; color: var(--primary-teal) !important; font-weight: 700;" data-i18n="contact">Contact</a></li>
+                    <li><a href="awareness.html" style="font-size: 14px; color: var(--text-color) !important; font-weight: 600;" data-i18n="awareness">Awareness</a></li>
+                    <li><a href="donor-pledge.html" style="font-size: 14px; color: var(--text-color) !important; font-weight: 600;" data-i18n="pledge">Pledge</a></li>
+                    <li><a href="index.html" class="btn-homepage" style="font-size: 14px; padding: 8px 15px;" data-i18n="back_to_dashboard">Dashboard</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="container">
+                <section class="contact-section">
+                    <h1 data-i18n="contact_title">Contact Us</h1>
+                </section>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 col-xl-8">
+                        <div class="contact-card">
+                            <div class="contact-icon-wrapper">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3 data-i18n="contact_questions_title">Have Questions?</h3>
+                            <p data-i18n="contact_questions_text">
+                                Reach out with confidence. Your voice matters in saving lives. 
+                                We listen, verify, and act responsibly.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 col-xl-8">
+                        <div class="info-highlight">
+                            <h4 data-i18n="contact_why_reach_out_title">Why Reach Out to Us?</h4>
+                            <p data-i18n="contact_why_reach_out_text">
+                                Organ donation is not just a decision — it is a responsibility that deserves clarity,
+                                trust, and transparency. Our platform is built to support you at every step.
+                            </p>
+                            <ul class="info-list">
+                                <li data-i18n="contact_reason1"><i class="fas fa-check-circle"></i> We guide donors and families with verified information and ethical practices.</li>
+                                <li data-i18n="contact_reason2"><i class="fas fa-check-circle"></i> Every interaction is designed with security, accountability, and data integrity in mind.</li>
+                                <li data-i18n="contact_reason3"><i class="fas fa-check-circle"></i> Whether it’s awareness, pledges, or queries, we respond with care and precision.</li>
+                                <li data-i18n="contact_reason4"><i class="fas fa-check-circle"></i> Technology meets humanity here — ensuring every contribution makes a difference.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script src="js/translations.js"></script>
+    <script src="main.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>

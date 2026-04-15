@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="js/auth.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('dark-mode');
+        });
+    }
+</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Organ Donation Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="css/fontawesome-all.css" rel="stylesheet">
+    <link rel="icon" href="images/app-logo.png">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main-card">
+        <header>
+            <div class="d-flex align-items-center">
+                <button id="themeToggle" class="theme-toggle-btn" title="Toggle Dark/Light Mode">
+                    <i class="fas fa-moon"></i> Switch Mode
+                </button>
+                <select id="languageSelector" class="lang-switch">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी (Hindi)</option>
+                </select>
+                <a href="homepage.html" class="btn-homepage" data-i18n="homepage">Homepage</a>
+            </div>
+        </header>
+
+        <button onclick="Auth.logout()" class="theme-toggle-btn logout-fixed-btn" title="Logout">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+
+        <main>
+            <div class="action-grid">
+                <a href="donor-registration.html" class="action-btn" data-i18n="register_donor">Register Donor</a>
+                <a href="patient-registration.html" class="action-btn" data-i18n="register_patient">Register Patient</a>
+                <a href="view-donors.html" class="action-btn" data-i18n="view_donors">View Donors</a>
+                <a href="view-patients.html" class="action-btn" data-i18n="view_patients">View Patients</a>
+                <a href="verify-pledges.html" class="action-btn" data-i18n="verify_pledges">Verify Pledges</a>
+                <a href="view-pledges.html" class="action-btn" data-i18n="view_pledges">View Pledges</a>
+            </div>
+
+            <div class="centered-actions">
+                <a href="transplant-matching.html" class="action-btn action-btn-wide" data-i18n="transplant_match">Transplant Match</a>
+                <a href="predict-success.html" class="action-btn action-btn-wide" style="background-color: #20c997; border-color: #20c997; color: white;" data-i18n="predict_success_btn">Predict Success Probability (ML)</a>
+                <a href="impact-dashboard.html" class="action-btn action-btn-wide" data-i18n="impact_dashboard">Impact Dashboard</a>
+            </div>
+
+            <section class="fact-section">
+                <h2 data-i18n="did_you_know">Did you know?</h2>
+                <p id="random-fact" data-i18n="random_fact">A single organ donor can save up to eight lives.</p>
+            </section>
+
+            <div class="search-row">
+                <!-- Search Donor -->
+                <div class="search-card">
+                    <h2 data-i18n="search_donor">Search Donor</h2>
+                    <div class="search-input-group">
+                        <input type="text" id="inputDonorMedicalID" data-i18n="donor_id_placeholder" placeholder="Donor Medical ID">
+                        <button class="btn-search" onclick="App.search('Donor')">
+                            <i class="fas fa-search"></i> <span data-i18n="search_btn">Search</span>
+                        </button>
+                    </div>
+                    <div class="details">
+                        <p id="getDonorFullName"></p>
+                        <p id="getDonorAge"></p>
+                        <p id="getDonorGender"></p>
+                        <p id="getDonorBloodType"></p>
+                        <p id="getDonorOrgan"></p>
+                        <p id="getDonorWeight"></p>
+                        <p id="getDonorHeight"></p>
+                        <p id="searchDonorCheck"></p>
+                    </div>
+                </div>
+
+                <!-- Search Patient -->
+                <div class="search-card">
+                    <h2 data-i18n="search_patient">Search Patient</h2>
+                    <div class="search-input-group">
+                        <input type="text" id="inputPatientMedicalID" data-i18n="patient_id_placeholder" placeholder="Patient Medical ID">
+                        <button class="btn-search" onclick="App.search('Patient')">
+                            <i class="fas fa-search"></i> <span data-i18n="search_btn">Search</span>
+                        </button>
+                    </div>
+                    <div class="details">
+                        <p id="getPatientFullName"></p>
+                        <p id="getPatientAge"></p>
+                        <p id="getPatientGender"></p>
+                        <p id="getPatientBloodType"></p>
+                        <p id="getPatientOrgan"></p>
+                        <p id="getPatientWeight"></p>
+                        <p id="getPatientHeight"></p>
+                        <p id="searchPatientCheck"></p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/translations.js"></script>
+    <script>
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+
+        // Check for saved theme preference
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-mode');
+            icon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                localStorage.setItem('theme', 'light');
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+    </script>
+    <script src="js/chatbot.js"></script>
+    <script defer src="./main.js"></script>
+</body>
+</html>
+

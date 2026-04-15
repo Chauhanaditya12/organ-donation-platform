@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="js/auth.js"></script>
+<script>
+    if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('dark-mode');
+        });
+    }
+</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Transplant Success Prediction - Organ Donation Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/fontawesome-all.css" rel="stylesheet">
+    <link rel="icon" href="images/app-logo.png">
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .prediction-glass-card {
+            background: rgba(255, 255, 255, 0.75) !important;
+            backdrop-filter: blur(25px) !important;
+            -webkit-backdrop-filter: blur(25px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.4) !important;
+            border-radius: 30px !important;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15) !important;
+            padding: 50px;
+            max-width: 900px;
+            margin: 40px auto;
+            animation: pageEntrance 0.8s ease-out;
+        }
+
+        body.dark-mode .prediction-glass-card {
+            background: rgba(30, 30, 30, 0.8) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+        
+        .prediction-glass-card h2 {
+            color: var(--primary-teal) !important;
+            font-size: 2.2rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        body.dark-mode .prediction-glass-card h2 {
+            color: #4db6ac !important;
+        }
+
+        .subtitle-text {
+            color: #558b88 !important;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 500;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        body.dark-mode .subtitle-text {
+            color: #b2dfdb !important;
+        }
+
+        .form-label-modern {
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 12px;
+            display: block;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        body.dark-mode .form-label-modern {
+            color: #ffffff !important;
+        }
+
+        .form-control-modern {
+            border-radius: 15px !important;
+            border: 1px solid rgba(0,0,0,0.05) !important;
+            padding: 15px 20px !important;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.9) !important;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .form-control-modern:focus {
+            border-color: var(--primary-teal) !important;
+            box-shadow: 0 10px 20px rgba(59, 141, 136, 0.15) !important;
+            transform: translateY(-2px);
+        }
+
+        /* Modern Range Slider Styling */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 10px;
+            cursor: pointer;
+            background: rgba(59, 141, 136, 0.2);
+            border-radius: 5px;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: var(--primary-teal);
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -7px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.2s;
+        }
+
+        input[type=range]:active::-webkit-slider-thumb {
+            transform: scale(1.2);
+            background: var(--primary-gradient);
+        }
+
+        .btn-calculate {
+            background: var(--primary-gradient);
+            color: white !important;
+            border: none;
+            border-radius: 15px;
+            padding: 18px 30px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            width: 100%;
+            margin-top: 30px;
+            box-shadow: 0 10px 25px rgba(0, 121, 107, 0.2);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .btn-calculate:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 121, 107, 0.3);
+            filter: brightness(1.1);
+        }
+
+        #result-container {
+            margin-top: 40px;
+            display: none;
+            text-align: center;
+            padding: 40px;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.5);
+            border: 1px solid rgba(255,255,255,0.5);
+            animation: cardEntrance 0.5s ease-out;
+        }
+
+        body.dark-mode #result-container {
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .success-prob {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--primary-teal);
+            margin: 15px 0;
+            text-shadow: 0 10px 20px rgba(59, 141, 136, 0.2);
+        }
+
+        .recommendation-text {
+            font-weight: 700;
+            font-size: 1.3rem;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .lang-switch {
+        }
+    </style>
+</head>
+<body>
+    <div class="main-card">
+        <header>
+            <div class="d-flex align-items-center">
+                <select id="languageSelector" class="lang-switch">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी (Hindi)</option>
+                </select>
+                <a href="index.html" class="btn-homepage" style="font-size: 14px; padding: 8px 15px;" data-i18n="back_to_dashboard">Dashboard</a>
+            </div>
+        </header>
+
+        <main>
+            <div class="prediction-glass-card">
+                <h2 data-i18n="ml_title">ML Transplant Success Predictor</h2>
+                <p class="subtitle-text" data-i18n="ml_subtitle">
+                    Using Logistic Regression to estimate transplant viability based on donor and recipient compatibility.
+                </p>
+                
+                <form id="prediction-form">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label class="form-label-modern" data-i18n="donor_age_label">Donor Age</label>
+                            <input type="number" id="donor_age" class="form-control form-control-modern" placeholder="Age of donor" data-i18n="donor_age_placeholder" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label class="form-label-modern" data-i18n="recipient_age_label">Recipient Age</label>
+                            <input type="number" id="recipient_age" class="form-control form-control-modern" placeholder="Age of recipient" data-i18n="recipient_age_placeholder" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <label class="form-label-modern" data-i18n="blood_compatibility_label">Blood Type Compatibility</label>
+                        <select id="blood_match" class="form-control form-control-modern" required>
+                            <option value="1" data-i18n="compatible_yes">Compatible Match Found (Yes)</option>
+                            <option value="0" data-i18n="compatible_no">No Compatible Match (No)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <label class="form-label-modern">
+                            <span data-i18n="health_score_label">Recipient Health Score (1-10)</span>: 
+                            <span id="health-val" style="color: var(--primary-teal); font-size: 1.4rem;">5</span>
+                        </label>
+                        <input type="range" id="health_score" class="w-100" min="1" max="10" value="5" 
+                               oninput="document.getElementById('health-val').innerText = this.value">
+                    </div>
+
+                    <button type="submit" class="btn-calculate" data-i18n="calculate_btn">Calculate Success Probability</button>
+                </form>
+
+                <div id="result-container">
+                    <h4 style="color: var(--text-color); font-weight: 700; opacity: 0.7;" data-i18n="result_title">Predicted Success Probability</h4>
+                    <div id="prob-display" class="success-prob">0%</div>
+                    <p id="recommendation" class="recommendation-text"></p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/translations.js"></script>
+    <script>
+        document.getElementById('prediction-form').onsubmit = async (e) => {
+            e.preventDefault();
+            
+            const data = {
+                donor_age: document.getElementById('donor_age').value,
+                recipient_age: document.getElementById('recipient_age').value,
+                blood_match: document.getElementById('blood_match').value,
+                health_score: document.getElementById('health_score').value
+            };
+
+            const resultContainer = document.getElementById('result-container');
+            const probDisplay = document.getElementById('prob-display');
+            const recommendation = document.getElementById('recommendation');
+
+            try {
+                const response = await fetch('http://localhost:5000/predict-success', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    resultContainer.style.display = 'block';
+                    probDisplay.innerText = result.success_probability + '%';
+                    
+                    const lang = localStorage.getItem('preferredLanguage') || 'en';
+                    
+                    if (result.success_probability > 70) {
+                        recommendation.innerText = lang === 'hi' ? "प्रत्यारोपण के लिए अत्यधिक अनुशंसित।" : "Highly recommended for transplant.";
+                        recommendation.style.backgroundColor = "rgba(46, 125, 50, 0.1)";
+                        recommendation.style.color = "#2e7d32";
+                    } else if (result.success_probability > 40) {
+                        recommendation.innerText = lang === 'hi' ? "मध्यम सफलता की संभावना। सावधानी के साथ आगे बढ़ें।" : "Moderate success probability. Proceed with caution.";
+                        recommendation.style.backgroundColor = "rgba(239, 108, 0, 0.1)";
+                        recommendation.style.color = "#ef6c00";
+                    } else {
+                        recommendation.innerText = lang === 'hi' ? "सफलता की कम संभावना। आगे चिकित्सा समीक्षा की आवश्यकता है।" : "Low success probability. Further medical review needed.";
+                        recommendation.style.backgroundColor = "rgba(198, 40, 40, 0.1)";
+                        recommendation.style.color = "#c62828";
+                    }
+                    
+                    // Smooth scroll to result
+                    resultContainer.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    alert("Error: " + result.error);
+                }
+            } catch (error) {
+                console.error(error);
+                alert("Could not connect to ML Backend. Make sure your Python server is running!");
+            }
+        };
+    </script>
+    <script src="../js/chatbot.js"></script>
+</body>
+</html>

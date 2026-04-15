@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+    if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('dark-mode');
+        });
+    }
+</script>
+    <meta charset="UTF-8">
+    <title>Patient Registration (Simplified)</title>
+    <link href="../css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <h3>Register an organ acceptor</h3>
+    <div>
+        <p>Full Name: <input type="text" id="PatientFullName" placeholder="Full name"></p>
+        <p>Age: <input type="text" id="PatientAge" placeholder="Age"></p>
+        <p>Gender:
+            <label><input type="radio" name="gender" value="Male"> Male</label>
+            <label><input type="radio" name="gender" value="Female"> Female</label>
+            <label><input type="radio" name="gender" value="Others"> Others</label>
+        </p>
+        <p>Medical ID: <input type="text" id="PatientMedicalID" placeholder="Patient Medical ID"></p>
+        <p>Blood Type:
+            <select id="PatientBloodType">
+                <option value="A-">A-</option>
+                <option value="A+">A+</option>
+                <option value="B-">B-</option>
+                <option value="B+">B+</option>
+                <option value="AB-">AB-</option>
+                <option value="AB+">AB+</option>
+                <option value="O-">O-</option>
+                <option value="O+">O+</option>
+            </select>
+        </p>
+        <p>Organ(s):
+            <label><input type="checkbox" name="Organ" value="Left Kidney"> Left Kidney</label>
+            <label><input type="checkbox" name="Organ" value="Right Kidney"> Right Kidney</label>
+            <label><input type="checkbox" name="Organ" value="Left Lung"> Left lung</label>
+            <label><input type="checkbox" name="Organ" value="Right Lung"> Right lung</label>
+            <label><input type="checkbox" name="Organ" value="Liver"> Liver</label>
+            <label><input type="checkbox" name="Organ" value="Heart"> Heart</label>
+            <label><input type="checkbox" name="Organ" value="Pancreas"> Pancreas</label>
+            <label><input type="checkbox" name="Organ" value="Intestine"> Intestine</label>
+        </p>
+        <p>Weight (kg): <input type="text" id="PatientWeight" placeholder="Weight"></p>
+        <p>Height (cm): <input type="text" id="PatientHeight" placeholder="Height"></p>
+        <p><input type="checkbox" id="PatientConsent" /> I agree to the consent form</p>
+        <p id="PatientConfirmationCheck"></p>
+        <button type="submit" onclick="App.register('Patient')">Register</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.7.3/dist/web3.min.js"></script>
+    <script src="main.js"></script>
+    <script src="../js/chatbot.js"></script>
+
+</body>
+</html>

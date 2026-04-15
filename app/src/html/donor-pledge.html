@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+    if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('dark-mode');
+        });
+    }
+</script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Donor Pledge - Organ Donation Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+    <link href="../css/fontawesome-all.css" rel="stylesheet" />
+    <link rel="icon" href="../images/app-logo.png" />
+    <link href="../css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .lang-switch {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--primary-teal);
+            border-radius: 8px;
+            padding: 5px 10px;
+            color: var(--primary-teal);
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-card">
+        <header>
+            <div class="d-flex align-items-center">
+                <select id="languageSelector" class="lang-switch">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी (Hindi)</option>
+                </select>
+                <a href="homepage.html" class="btn-homepage" style="font-size: 14px; padding: 8px 15px;" style="font-size: 14px; padding: 8px 15px;" data-i18n="back_to_home">Back to Home</a>
+            </div>
+        </header>
+
+        <main>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-6 form-bg">
+                        <h3 data-i18n="pledge_title">Pledge to Become an Organ Donor</h3>
+                        
+                        <div class="form-group">
+                            <label data-i18n="full_name">Full Name:</label>
+                            <input type="text" id="PledgeFullName" class="form-control" placeholder="Enter full name" />
+                        </div>
+
+                        <div class="form-group">
+                            <label data-i18n="age">Age:</label>
+                            <input type="text" id="PledgeAge" class="form-control" placeholder="Enter age" data-i18n="age" />
+                        </div>
+
+                        <div class="form-group">
+                            <label data-i18n="gender">Gender:</label>
+                            <div id="group">
+                                <label>
+                                    <input type="radio" name="gender" value="Male" />
+                                    <span data-i18n="male">Male</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="gender" value="Female" />
+                                    <span data-i18n="female">Female</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="gender" value="Others" />
+                                    <span data-i18n="others">Others</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label data-i18n="medical_id">Medical ID:</label>
+                            <input type="text" id="PledgeMedicalID" class="form-control" placeholder="Enter Medical ID" data-i18n="medical_id" />
+                        </div>
+
+                        <div class="form-group">
+                            <label data-i18n="blood_type">Blood Type:</label>
+                            <select id="PledgeBloodType" class="form-control">
+                                <option value="A-">A-</option>
+                                <option value="A+">A+</option>
+                                <option value="B-">B-</option>
+                                <option value="B+">B+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="O-">O-</option>
+                                <option value="O+">O+</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label data-i18n="pledge_organs">Organ(s) to Pledge:</label>
+                            <div id="group">
+                                <label><input type="checkbox" name="Organ" value="Left Kidney" /><span data-i18n="left_kidney">Left Kidney</span></label>
+                                <label><input type="checkbox" name="Organ" value="Right Kidney" /><span data-i18n="right_kidney">Right Kidney</span></label>
+                                <label><input type="checkbox" name="Organ" value="Left Lung" /><span data-i18n="left_lung">Left Lung</span></label>
+                                <label><input type="checkbox" name="Organ" value="Right Lung" /><span data-i18n="right_lung">Right Lung</span></label>
+                                <label><input type="checkbox" name="Organ" value="Liver" /><span data-i18n="liver">Liver</span></label>
+                                <label><input type="checkbox" name="Organ" value="Heart" /><span data-i18n="heart">Heart</span></label>
+                                <label><input type="checkbox" name="Organ" value="Pancreas" /><span data-i18n="pancreas">Pancreas</span></label>
+                                <label><input type="checkbox" name="Organ" value="Intestine" /><span data-i18n="intestine">Intestine</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label data-i18n="weight">Weight (kg):</label>
+                            <input type="text" id="PledgeWeight" class="form-control" placeholder="Weight" data-i18n="weight" />
+                        </div>
+
+                        <div class="form-group">
+                            <label data-i18n="height">Height (cm):</label>
+                            <input type="text" id="PledgeHeight" class="form-control" placeholder="Height" data-i18n="height" />
+                        </div>
+
+                        <button type="submit" class="btn-register mt-4" onclick="App.register('Pledge')" data-i18n="submit_pledge">
+                            Submit Pledge
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center mt-4">
+                    <div class="col-md-6">
+                        <div class="alert success" style="border-radius: 12px;">
+                            <span id="PledgeConfirmationCheck"></span>
+                        </div>
+                        <div class="alert warning" style="border-radius: 12px;">
+                            <span id="PledgeInputCheck"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/translations.js"></script>
+    <script src="../main.js"></script>
+    <script src="../js/chatbot.js"></script>
+</body>
+</html>
