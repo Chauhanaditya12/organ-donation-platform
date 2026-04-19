@@ -35,15 +35,9 @@ module.exports = {
     new CopyWebpackPlugin([{ from: "./src/css/style-home.css", to: "css/style-home.css" }]),
     new CopyWebpackPlugin([{ from: "./node_modules/@fortawesome/fontawesome-free/css/all.min.css", to: "css/fontawesome-all.css" }]),
     new CopyWebpackPlugin([{ from: "./node_modules/@fortawesome/fontawesome-free/webfonts", to: "css/webfonts" }]),
-
-
-
-
     new CopyWebpackPlugin([{ from: "./src/images/app-logo.png", to: "images/app-logo.png" }]),
     new CopyWebpackPlugin([{ from: "./src/images/app-bg.png", to: "images/app-bg.png" }]),
     new CopyWebpackPlugin([{ from: "./src/images/organ-donation-logo.svg", to: "images/organ-donation-logo.svg" }]),
-    new CopyWebpackPlugin([{ from: "./src/images/organ-donation-logo-new.svg", to: "images/organ-donation-logo-new.svg" }]),
-    new CopyWebpackPlugin([{ from: "./src/images/logo-new-final.svg", to: "images/logo-new-final.svg" }]),
     new CopyWebpackPlugin([{ from: "./src/images/logo-final-1.svg", to: "images/logo-final-1.svg" }]),
     new CopyWebpackPlugin([{ from: "./src/images/logo-final-2.svg", to: "images/logo-final-2.svg" }]),
     new CopyWebpackPlugin([{ from: "./src/images/header-image-new.png", to: "images/header-image-new.png" }]),
